@@ -22,7 +22,6 @@ local function load(bot)
         ::continue::
     end
 
-    ---@diagnostic disable-next-line: undefined-field
     bot:info(table.count(commands)..' command(s) loaded in total')
 
     return commands

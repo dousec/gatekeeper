@@ -30,7 +30,7 @@ bot:on('messageCreate', function(message)
     if message.author.bot then return end
 
     local parts = array.filter(
-        discordia.extensions.string.split(message.content, " "),
+        message.content:split(' '),
         function(part) return part ~= '' end
     )
 
