@@ -11,7 +11,7 @@ local function loadCommands(bot)
             goto continue
         end
 
-        local command = require('commands.'..name)
+        local command = require('./commands/' .. name)
 
         bot.commands[name] = command
         bot.client:info('"' .. name .. '" command loaded')
@@ -32,7 +32,7 @@ local function loadEvents(bot)
             goto continue
         end
 
-        local eventHandler = require('events.'..name)
+        local eventHandler = require('./events/' .. name)
 
         bot.events[name] = eventHandler(bot)
         bot.client:info('"' .. name .. '" event handler loaded')
