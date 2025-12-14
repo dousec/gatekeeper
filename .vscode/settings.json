@@ -2,7 +2,7 @@
   "Lua.workspace.library": [
     "./deps",
     "${addons}/luvit/module/library"
-],
+  ],
   "Lua.workspace.checkThirdParty": false,
   "Lua.diagnostics.disable": [
     "undefined-field"
