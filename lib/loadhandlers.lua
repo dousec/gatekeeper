@@ -12,9 +12,13 @@ local function loadCommands(bot)
         end
 
         local command = require('./commands/' .. name)
+        if not command or type(command.run) ~= 'function' then
+            bot.client:error(('Command file "%s" does not return a valid command, skipping'):format(name))
+            goto continue
+        end
 
         bot.commands[name] = command
-        bot.client:info('"' .. name .. '" command loaded')
+        bot.client:info(('" %s" command loaded'):format(name))
 
         ::continue::
     end
@@ -32,10 +36,14 @@ local function loadEvents(bot)
             goto continue
         end
 
-        local eventHandler = require('./events/' .. name)
+        local eventFn = require('./events/' .. name)
+        if type(eventFn) ~= 'function' then
+            bot.client:error(('Event file "%s" does not return a function, skipping'):format(name))
+            goto continue
+        end
 
-        bot.events[name] = eventHandler(bot)
-        bot.client:info('"' .. name .. '" event handler loaded')
+        bot.events[name] = eventFn
+        bot.client:info(('"%s" event handler loaded'):format(name))
 
         ::continue::
     end
