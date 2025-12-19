@@ -1,18 +1,14 @@
 local discordia = require 'discordia'
-discordia.extensions.string()
+local Bot = require './Bot'
+local loadenv = require './lib.loadenv'
+
 discordia.extensions.table()
+discordia.extensions.string()
+loadenv()
 
-require 'lib.loadenv'()
-local bot = require './bot'
+local bot = Bot {
+    prefix = 'gk',
+    filesDir = './discordia_files/'
+}
 
-local token = os.getenv('DISCORD_BOT_TOKEN')
-assert(
-    token,
-    '"DISCORD_BOT_TOKEN" is not set in the environment variables'
-)
-
-for eventName, eventHandler in pairs(bot.events) do
-    bot.client:on(eventName, eventHandler)
-end
-
-bot.client:run('Bot ' .. token)
+bot:run()
