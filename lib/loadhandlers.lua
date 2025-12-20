@@ -18,7 +18,7 @@ local function loadCommands(bot)
         end
 
         bot.commands[name] = command
-        bot.client:info(('" %s" command loaded'):format(name))
+        bot.client:info(('"%s" command loaded'):format(name))
 
         ::continue::
     end
